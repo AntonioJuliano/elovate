@@ -1,11 +1,10 @@
 class Team
   include Mongoid::Document
 
-  field :p1, type: String
-  field :p2, type: String
   field :winner, type: String
 
-  has_and_belongs_to_many :entries
+  has_and_belongs_to_many :team_one, class_name: Entry
+  has_and_belongs_to_many :team_two, class_name: Entry
   has_many :games
 
 end

@@ -1,7 +1,11 @@
 class League
   include Mongoid::Document
 
-  field :league, type: String
+  field :name, type: String
+  field :description, type: String
 
   has_many :entries
+
+  validates_presence_of :name
+
 end
