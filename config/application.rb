@@ -32,5 +32,7 @@ module Elovate
     config.generators do |g|
       g.orm :mongoid
     end
+
+    config.api_only = true
   end
 end
