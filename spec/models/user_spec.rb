@@ -1,14 +1,22 @@
 require 'rails_helper'
 
 describe User do
+##########################################################################################
+## Factory girl generate default case for user
+##########################################################################################
+  let (:user_default) {create(:user)}
+
+
+##########################################################################################
+## Default case--all should be valid
+##########################################################################################
   it 'is valid with a username, first name, and last name' do
-    u = User.new(
-      username: 'bob_smith',
-      first_name: 'Bob',
-      last_name: 'Smith')
-    expect(u).to be_valid
+    expect(user_default).to be_valid
   end
 
+##########################################################################################
+## Username cases
+##########################################################################################
   describe 'invalid usernames' do
     it 'without a username' do
       u = User.new(username: nil)
@@ -27,6 +35,9 @@ describe User do
     end
   end
 
+##########################################################################################
+## First name, last name cases
+##########################################################################################
   describe 'invalid names' do
     it 'is invalid without a first and last name' do
       u = User.new(first_name: nil, last_name: nil)
@@ -43,21 +54,15 @@ describe User do
     end
   end
 
+##########################################################################################
+## Saving to database
+##########################################################################################
   describe '#save' do
     it 'updates fields and saves to db' do
-    u = User.new(
-      username: 'bob_smith',
-      first_name: 'Bob',
-      last_name: 'Smith')
-      expect { u.save! }.to_not raise_error
+      expect { user_default.save! }.to_not raise_error
 
-      expect(User.find(u.id)).to eq(u)
+      expect(User.find(user_default.id)).to eq(user_default)
     end
   end
-
-  context 'user factory' do
-    it 'creates a valid user' do
-      create(:user)
-    end
-  end
+##########################################################################################
 end
