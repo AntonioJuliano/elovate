@@ -15,7 +15,7 @@ describe Game do
 
   it "does not have a valid winner" do
     g.winner = 'something'
-    g.valid?
+    expect(g.save).to be_falsey
     expect(g.errors[:winner]).to include("Winner is not valid")
   end
 ##########################################################################################

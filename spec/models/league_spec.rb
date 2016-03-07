@@ -16,7 +16,7 @@ describe League do
 
   it 'is invalid without a name' do
     l.name = nil
-    l.valid?
+    expect(l.save).to be_falsey
     expect(l.errors[:name]).to include("can't be blank")
   end
 ##########################################################################################

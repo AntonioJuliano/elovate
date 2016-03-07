@@ -17,13 +17,12 @@ describe Entry do
 ## Association with league cases
 ##########################################################################################
   it "is valid if it belongs to a league" do
-    e.valid?
     expect(e).to be_valid
   end
 
   it "is invalid if it does not belong to a league" do
     e.league = nil
-    e.valid?
+    expect(e.save).to be_falsey
     expect(e.errors[:league]).to include("can't be blank")
   end
 
