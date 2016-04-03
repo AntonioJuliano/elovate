@@ -1,0 +1,19 @@
+#
+# Check if Homebrew is installed
+#
+which -s brew
+if [[ $? != 0 ]] ; then
+  # Install Homebrew
+  # https://github.com/mxcl/homebrew/wiki/installation
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+else
+  brew update
+fi
+
+brew install docker docker-machine docker-compose
+docker-machine create default --driver virtualbox
+docker-machine start default
+docker-machine env
+eval $(docker-machine env)
+docker-compose up -d
+echo "\nServer running at: $(docker-machine ip):3000\n"
