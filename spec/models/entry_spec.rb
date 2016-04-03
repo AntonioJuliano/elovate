@@ -10,7 +10,7 @@ describe Entry do
 ## Elo validity
 ##########################################################################################
   it "has a valid elo of type Integer" do
-    e.elo.should be_an(Integer)
+    expect(e.elo).to be_an(Integer)
   end
 
 ##########################################################################################
