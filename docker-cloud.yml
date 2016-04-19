@@ -1,0 +1,26 @@
+lb:
+  image: dockercloud/haproxy
+  links:
+    - web
+  ports:
+    - "80:80"
+  roles:
+    - global
+  restart: always
+web:
+  image: antoniojuliano/elovate
+  links:
+    - mongodb
+  command: bin/rails server --port 3000
+  ports:
+    - "3000:3000"
+  volumes:
+    - .:/elovate
+  target_num_containers: 2
+  autoredeploy: true
+  restart: always
+mongodb:
+  image: mongo:3.2.4
+  ports:
+    - "5432:5432"
+  restart: always
