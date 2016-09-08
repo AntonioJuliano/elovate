@@ -1,16 +1,16 @@
+ruby "2.3.1"
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5.1'
-gem 'rails-api'
+gem 'rails', '~> 5.0.0'
 
-gem "active_model_serializers", "~> 0.9.0"
+gem "active_model_serializers", '~> 0.10.0'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'mongoid', '~> 5.1.0'
+gem 'mongoid', '~> 6.0.0.rc0'
 gem 'bson_ext'
-
+gem 'redis-rails', '~> 5.0.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -24,8 +24,8 @@ gem 'rack-cors'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'rspec-rails', '~> 3.0'
-  gem "factory_girl_rails", "~> 4.0"
+  gem 'rspec-rails', '~> 3.5'
+  gem "factory_girl_rails", "~> 4.7.0"
 end
 
 group :development do

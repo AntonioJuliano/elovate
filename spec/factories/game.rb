@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :game do
-    winner 'team_one'
+    winner { create(:team) }
+    loser { create(:team) }
   end
 end
