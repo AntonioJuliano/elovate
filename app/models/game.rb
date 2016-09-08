@@ -1,16 +1,16 @@
 class Game
   include Mongoid::Document
 
-  VALID_WINNERS = ['team_one', 'team_two', 'tie']
+  field :data, type: Hash, default: {}
 
-  field :winner, type: String
+  belongs_to :winner, class_name: "Team", inverse_of: :wins
+  belongs_to :loser, class_name: "Team", inverse_of: :losses
 
-  belongs_to :team1, class_name: Team
-  belongs_to :team2, class_name: Team
+  validates_presence_of :winner, :loser
 
-  validates :winner, inclusion: {in: VALID_WINNERS, message: 'Winner is not valid'}
+  after_create :update_elo
+
   def update_elo
-
+    
   end
-
 end
