@@ -12,6 +12,7 @@ web:
   image: antoniojuliano/elovate
   depends_on:
     - mongodb
+    - redis
   command: bin/rails server --port 3000
   ports:
     - "3000:3000"
