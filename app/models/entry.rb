@@ -4,14 +4,26 @@ class Entry
   field :elo, type: Integer, default: 0
   field :manager, type: Boolean, default: false
 
+  field :name
+  # TODO permissions
+
   belongs_to :user
   belongs_to :league
-  has_and_belongs_to_many :teams
+  has_many :results
 
+  validates :name, length: {in: 3..20}, presence: true
   validates_presence_of :league, :user, :elo
+  validate :validate_unique_name, on: :create
 
-  def record_game
+  def games
+    results.map { |r| r.game }
   end
 
+  private
 
+  def validate_unique_name
+    if Entry.where(name: name, league: league).length > 0
+      errors.add(:name, 'Already taken')
+    end
+  end
 end

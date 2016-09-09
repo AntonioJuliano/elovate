@@ -11,6 +11,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'mongoid', '~> 6.0.0.rc0'
 gem 'bson_ext'
 gem 'redis-rails', '~> 5.0.1'
+gem 'database_cleaner', '~> 1.5.3'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -23,7 +24,7 @@ gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'pry-byebug', '~> 3.4.0'
   gem 'rspec-rails', '~> 3.5'
   gem "factory_girl_rails", "~> 4.7.0"
 end

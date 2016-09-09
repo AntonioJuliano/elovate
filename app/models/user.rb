@@ -8,7 +8,7 @@ class User
 
   has_many :entries
 
-  validates :username, length: {in: 3..20}, presence: true
+  validates :username, length: {in: 3..20}, presence: true, uniqueness: true
   validates :first_name, presence: true,
     format: {with: /\A[a-zA-Z\-]+\z/, message: "only letters and dashes allowed"}
   validates :last_name, presence: true,
