@@ -141,3 +141,13 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+production:
+  clients:
+    default:
+      database: elovate
+      hosts:
+        - mongo
+      options:
+        read:
+          mode: :primary
+        max_pool_size: 1
