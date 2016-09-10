@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate, only: [:index, :show, :create]
   before_action :set_user, only: [:show, :update, :destroy]
+  before_action :ensure_user_match, only: [:update, :destroy]
 
   # GET /users
   def index
@@ -15,10 +17,10 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    @user = User.new(create_user_params)
 
     if @user.save
-      render json: @user, status: :created, location: @user
+      render json: @user, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -26,7 +28,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/[id]
   def update
-    if @user.update(todo_params)
+    if @user.update(update_user_params)
       render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -36,6 +38,8 @@ class UsersController < ApplicationController
   # DELETE /users/[id]
   def destroy
     @user.destroy
+
+    render status: :ok
   end
 
   private
@@ -44,8 +48,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
-  def user_params
-    params.require(:user).permit(:username)
+  def ensure_user_match
+    render status: :unauthorized unless @user == @current_user
+  end
+
+  def create_user_params
+    params.require(:user).permit(:username, :first_name, :last_name)
+  end
+
+  def update_user_params
+    params.require(:user).permit(:username, :first_name, :last_name)
   end
 end
