@@ -14,9 +14,9 @@ class GamesController < ApplicationController
     game = Game.generate(@league, JSON.parse(params[:game]).deep_symbolize_keys!)
 
     if game.valid?
-      render json: game, status: 200
+      render json: game, status: :created
     else
-      render json: game.errors, status: 422
+      render json: game.errors, status: :unprocessable_entity
     end
   end
 
@@ -28,11 +28,13 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/[id]
   def update
     # TODO
+    render status: 501
   end
 
   # DELETE /games/[id]
   def destroy
     # TODO
+    render status: 501
   end
 
   private
@@ -50,6 +52,6 @@ class GamesController < ApplicationController
       return true if e.league == @league
     end
 
-    render status: 403
+    render status: :unauthorized
   end
 end

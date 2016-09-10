@@ -69,7 +69,7 @@ describe GamesController do
 
       post :create, params: { league_id: league.id, game: @params.to_json, username: user.username }, format: :json
       
-      expect(response.status).to eq(200)
+      expect(response.status).to eq(201)
 
       expect(Game.all.length).to eq(starting_games + 1)
       expect(Result.all.length).to eq(starting_results + 4)

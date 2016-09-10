@@ -20,7 +20,8 @@ gem 'database_cleaner', '~> 1.5.3'
 # gem 'unicorn'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-gem 'rack-cors'
+gem 'rack-cors', '~> 0.4.0'
+gem 'rack-attack', '~> 5.0.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

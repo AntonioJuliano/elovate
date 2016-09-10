@@ -5,6 +5,10 @@ class ApplicationController < ActionController::API
  
   def authenticate
     # TODO
-    @current_user = User.find_by(username: params[:username])
+    @current_user = User.where(username: params[:username]).first
+
+    unless @current_user
+      render status: :unauthorized
+    end
   end
 end
