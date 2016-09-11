@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/[id]
   def update
-    if @user.update(update_user_params)
+    if !update_user_params.empty? &&@user.update(update_user_params)
       render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -37,9 +37,11 @@ class UsersController < ApplicationController
 
   # DELETE /users/[id]
   def destroy
-    @user.destroy
-
-    render status: :ok
+    if @user.destroy
+      render status: :ok
+    else
+      render status: :unprocessable_entity
+    end
   end
 
   private

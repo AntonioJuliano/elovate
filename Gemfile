@@ -12,12 +12,10 @@ gem 'mongoid', '~> 6.0.0.rc0'
 gem 'bson_ext'
 gem 'redis-rails', '~> 5.0.1'
 gem 'database_cleaner', '~> 1.5.3'
+gem 'mlanett-redis-lock', '~> 0.2.7', require: 'redis-lock'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors', '~> 0.4.0'

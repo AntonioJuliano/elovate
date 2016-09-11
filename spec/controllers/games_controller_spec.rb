@@ -22,7 +22,8 @@ describe GamesController do
         'data' => game.data,
         'league' => {
           'id' => league.id.to_s,
-          'name' => league.name
+          'name' => league.name,
+          'description' => league.description
         },
         'results' => expected_results
       }
