@@ -4,14 +4,13 @@ Easily add elo ranking to any game or league.
 
 ## Setup
 
-* On console run: ```sh script/start```
+1. [Install Docker](https://docs.docker.com/engine/installation/)
+2. [Install Docker Compose](https://docs.docker.com/compose/install/)
+3. `docker-compose up`
+4. App will be up running at [localhost:3000](localhost:3000)
 
-Then visit url printed by script to visit site. This will take a while the first time, but should be faster after that.
-Note: setup script is OSX only, for any other OS [Install Docker](https://docs.docker.com/engine/installation/) then run: `docker-compose up`
+## Development
 
-### Other Commands
-* Shutdown server: `sh script/stop`
-* Start rails console:```sh script/console```
-* Run rspec: `sh script/rspec`
- * Run rspec on specific file/test: `sh script/rspec spec/models/user_spec.rb`
-* If you want go get fancy and run any other command: `docker-compose run web [COMMAND]`
+To run tests: ```docker-compose run web bundle exec rspec```
+
+To get rails console: ```docker-compose run web bundle exec rails c```

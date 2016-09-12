@@ -1,1 +1,0 @@
-docker-compose run web bundle exec rspec $1
