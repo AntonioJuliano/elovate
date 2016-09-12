@@ -1,0 +1,7 @@
+machine:
+  services:
+    - mongodb
+    - redis
+database:
+  pre:
+    - mv config/redis.ci.yml config/redis.yml
