@@ -11,7 +11,7 @@ describe GamesController do
         expected_results << {
           'id' => r.entry.id.to_s,
           'name' => r.entry.name,
-          'elo' => r.entry.elo,
+          'rating' => r.entry.rating.mu,
           'team' => r.team,
           'result' => r.result
         }

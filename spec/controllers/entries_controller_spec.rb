@@ -7,7 +7,7 @@ describe EntriesController do
   before do
     @expected_response = {
       'name' => entry.name,
-      'elo' => entry.elo,
+      'rating' => entry.rating.mu,
       'id' => entry.id.to_s,
       'league_id' => entry.league.id.to_s
     }

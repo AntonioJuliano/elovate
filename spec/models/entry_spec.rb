@@ -3,11 +3,7 @@ require 'rails_helper'
 describe Entry do
   let (:e) { create(:entry) }
 
-  it "has a valid elo of type Integer" do
-    expect(e.elo).to be_an(Integer)
-  end
-
-  it "is valid if it belongs to a league" do
+  it "has a valid factory" do
     expect(e).to be_valid
   end
 

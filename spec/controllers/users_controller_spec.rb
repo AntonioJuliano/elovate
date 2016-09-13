@@ -11,7 +11,7 @@ describe UsersController do
       'last_name' => user.last_name,
       'entries' => [{
         'name' => user.entries.first.name,
-        'elo' => user.entries.first.elo,
+        'rating' => user.entries.first.rating.mu,
         'id' => user.entries.first.id.to_s,
         'league_id' => user.entries.first.league.id.to_s,
       }]
