@@ -9,7 +9,7 @@ class Game
   validates_presence_of :league
   validate :validate_results
 
-  after_create :update_elo
+  after_create :update_ratings
 
   def self.generate(league, params)
     new_game = Game.new
@@ -38,15 +38,29 @@ class Game
     new_game
   end
 
-  def update_elo
-    
+  def teams
+    team_arr = []
+    results.each do |r|
+      team_arr[r.team] ||= []
+      team_arr[r.team] << r
+    end
+    team_arr
   end
 
   private
 
+  def update_ratings
+    TrueSkill::Service.update_ratings_for_game(self)
+  end
+
   def validate_results
     unless results.map { |r| r.team }.uniq.length >= 2
       errors.add(:results, 'Game must have at least 2 distinct teams')
+    end
+
+    entries = results.map { |r| r.entry&.id }
+    unless entries.uniq.length == entries.length
+      errors.add(:results, 'cannot include duplicate entries')
     end
 
     results_map = {}

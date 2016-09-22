@@ -11,7 +11,7 @@ describe LeaguesController do
       'description' => league.description,
       'entries' => [{
         'name' => league.entries.first.name,
-        'elo' => league.entries.first.elo,
+        'rating' => league.entries.first.rating.mu,
         'id' => league.entries.first.id.to_s,
         'league_id' => league.id.to_s,
       }]

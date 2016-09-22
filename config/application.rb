@@ -26,6 +26,8 @@ module Elovate
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Pacific Time (US & Canada)'
 
+    config.autoload_paths << Rails.root.join('lib')
+
     config.generators do |g|
       g.orm :mongoid
     end
