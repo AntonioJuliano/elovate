@@ -48,6 +48,8 @@ def stub_trueskill(new_ratings = nil)
       end
     end
 
-    { new_ratings: (new_ratings || ratings) }
+    o = OpenStruct.new
+    o.body = { new_ratings: (new_ratings || ratings) }.to_json
+    o
   end
 end

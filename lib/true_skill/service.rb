@@ -20,7 +20,7 @@ module TrueSkill
             environment: trueskill_environment
           }
 
-          resp = client.get_rating_updates(params)
+          resp = JSON.parse(client.get_rating_updates(params).body).deep_symbolize_keys!
 
           unless (resp[:new_ratings].map { |r| r[:id] } - all_ratings.keys).empty?
             raise "TrueSkill did not return new ratings for all passed ratings"
