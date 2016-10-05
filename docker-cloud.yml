@@ -31,3 +31,8 @@ redis:
   restart: always
   volumes:
     - /data
+trueskill:
+  image: 'antoniojuliano/trueskill:latest'
+  ports:
+    - "5000:5000"
+
