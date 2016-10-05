@@ -10,6 +10,11 @@ services:
     ports:
       - "6379:6379"
 
+  trueskill:
+    image: 'antoniojuliano/trueskill'
+    ports:
+      - "5000:5000"
+
   web:
     build: .
     command: bin/rails server --port 3000 --binding 0.0.0.0
@@ -18,5 +23,6 @@ services:
     depends_on:
       - mongo
       - redis
+      - trueskill
     volumes:
       - .:/elovate

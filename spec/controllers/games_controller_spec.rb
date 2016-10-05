@@ -5,19 +5,19 @@ describe GamesController do
   let(:game) { create(:game, league: league) }
   let(:user) { create(:entry, league: league).user }
 
-  before do
+  def expected_response
     expected_results = []
       game.results.each do |r|
         expected_results << {
           'id' => r.entry.id.to_s,
           'name' => r.entry.name,
-          'rating' => r.entry.rating.mu,
+          'rating' => r.entry.rating.reload.mu,
           'team' => r.team,
           'result' => r.result
         }
       end
 
-      @expected_response = {
+      {
         'id' => game.id.to_s,
         'data' => game.data,
         'league' => {
@@ -37,7 +37,7 @@ describe GamesController do
 
       expect(response.status).to eq(200)
 
-      expect(JSON.parse(response.body)).to eq([@expected_response])
+      expect(JSON.parse(response.body)).to eq([expected_response])
     end
   end
 
@@ -103,7 +103,7 @@ describe GamesController do
 
       expect(response.status).to eq(200)
 
-      expect(JSON.parse(response.body)).to eq(@expected_response)
+      expect(JSON.parse(response.body)).to eq(expected_response)
     end
   end
 end

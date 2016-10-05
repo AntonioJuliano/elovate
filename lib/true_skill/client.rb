@@ -8,14 +8,18 @@ module TrueSkill
 
     def get_rating_updates(params)
       Retryable.retryable(:tries => 3) do
-        @conn.get('/ratings', params)
+        @conn.post do |req|
+          req.url '/ratings'
+          req.headers['Content-Type'] = 'application/json'
+          req.body = params.to_json
+        end
       end
     end
 
     private
 
     def make_connection
-      Faraday.new(ENV['TRUESKILL_URI'])
+      Faraday.new(url: ENV['TRUESKILL_URI'])
     end
   end
 end
